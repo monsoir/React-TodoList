@@ -3,6 +3,7 @@ import {
   DELETETODO,
   CHECKTODO,
   UPDATETODO,
+  CLEARTODO,
 } from '../actions/todoActions';
 import initialState from '../initialState';
 import Todo from '../model/todo';
@@ -55,7 +56,6 @@ export default function todoOperate(state = initialState, action) {
     }
     case UPDATETODO:
     {
-
       if (action.id) {
         const newTodos = state.todos.slice(0, state.todos.length);
         const tobeUpdated = newTodos.find((element) => {
@@ -66,12 +66,19 @@ export default function todoOperate(state = initialState, action) {
   
           return {
             ...state,
-            dos: newTodos,
+            todos: newTodos,
           };
         }
       }
 
       return state;
+    }
+    case CLEARTODO:
+    {
+      return {
+        ...state,
+        todos: [],
+      };
     }
     default:
       return state;

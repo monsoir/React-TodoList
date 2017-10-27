@@ -1,18 +1,20 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Provider } from 'react-redux';
 import store from './dataControl/store/store';
 // import logo from './logo.svg';
 import './App.css';
-import Container from './Container';
+import MainContainer from './MainContainer';
+import Panel from './TodoUtil/accessoriesPanel';
 
-class App extends Component {
-  render() {
-    return (
-      <Provider store={store}>
-        <Container />
-      </Provider>
-    );
-  }
-}
+const App = () => {
+  return (
+    <Provider store={store}>
+      <div>
+        <MainContainer />
+        <Panel />
+      </div>
+    </Provider>
+  );
+};
 
 export default App;

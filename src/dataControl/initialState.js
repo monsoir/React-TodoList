@@ -1,4 +1,4 @@
-import Todo from './model/todo';
+// import Todo from './model/todo';
 
 const initialState = {
   todos: [

@@ -1,6 +1,6 @@
 import { createStore, applyMiddleware } from 'redux';
 import rootReducer from '../reducers/rootReducer';
-import TodoSaver from '../storage/storager';
+import TodoSaver from '../myMiddleware/storager';
 
 const configureStore = (preloadedState) => {
   return createStore(
