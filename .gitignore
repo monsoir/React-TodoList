@@ -97,4 +97,7 @@ typings/
 !.vscode/extensions.json
 .history
 
+### 项目构建代码 ###
+build/
+
 # End of https://www.gitignore.io/api/node,macos,visualstudiocode
