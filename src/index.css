@@ -1,0 +1,8 @@
+body {
+  font: 14px "Century Gothic", Futura, sans-serif;
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+  height: 100vh;
+  background-color: #dadbd2,
+}
