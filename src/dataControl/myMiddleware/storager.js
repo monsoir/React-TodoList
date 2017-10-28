@@ -8,7 +8,6 @@ import {
 
 /* eslint-disable */
 const TodoSaver = store => next => action => {
-  next(action);
   if (action.type === ADDTODO ||
       action.type === UPDATETODO ||
       action.type === CHECKTODO ||
@@ -17,6 +16,8 @@ const TodoSaver = store => next => action => {
     const todos = store.getState().todoReducer.todos;
     localStorage.setItem('todos', JSON.stringify(todos));
   }
+
+  return next(action);
 };
 /* eslint-disable */
 
