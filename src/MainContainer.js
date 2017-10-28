@@ -40,6 +40,8 @@ class Container extends PureComponent {
       }
     }, this);
 
+    document.title = `Todo List - ${this.state.section === 0 ? 'todo' : 'done'}`;
+
     return (
       <Todos
         items={items}
