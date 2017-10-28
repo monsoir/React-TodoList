@@ -21,6 +21,8 @@ const styles = {
     flexDirection: 'column',
     WebkitPaddingStart: 0,
     listStyleType: 'none',
+    // overflowY: 'auto',
+    // maxHeight: 500,
   },
 };
 

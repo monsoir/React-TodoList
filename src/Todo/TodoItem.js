@@ -6,11 +6,12 @@ const styles = {
     display: 'flex',
     flex: 4,
     flexDirection: 'row',
-    justifyContent: 'center',
+    justifyContent: 'flex-start',
     alignItems: 'center',
     margin: 10,
     paddingTop: 10,
     paddingBottom: 10,
+    overflowX: 'scroll',
   },
   title: {
     flex: 4,
@@ -45,7 +46,7 @@ const styles = {
     flex: 1,
     width: 30,
     height: 30,
-  }
+  },
 };
 
 const propTypes = {

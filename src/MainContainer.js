@@ -6,7 +6,9 @@ import Todos from './Todo/TodoContainer';
 import InputBar from './InputBar/inputBar';
 import {
   addTodo,
+  clearTodo,
 } from './dataControl/actions/todoActions';
+import TouchableOpacity from './utils/UI/TouchableOpacity';
 
 const styles = {
   container: {
@@ -16,7 +18,32 @@ const styles = {
     alignItems: 'center',
     justifyContent: 'center',
   },
+  panel: {
+    display: 'flex',
+    overflowX: 'scroll',
+    flex: 1,
+  },
+  panelInnerContainer: {
+    display: 'flex',
+    flex: 1,
+    flexDirection: 'row',
+    height: 20,
+    justifyContent: 'flex-start',
+    listStyleType: 'none',
+  },
+  accessory: {
+    cursor: 'pointer',
+    outline: 0,
+    borderWidth: 0,
+    background: 'white',
+    fontSize: 18,
+    fontFamily: 'Futura',
+    marginLeft: 2,
+    marginRight: 20,
+  },
 };
+
+const HEIGHTFACTOR = 0.7;
 
 class Container extends PureComponent {
 
@@ -24,11 +51,30 @@ class Container extends PureComponent {
     super(props);
     this.state = {
       section: 0,
+      todosHeight: window.innerHeight * HEIGHTFACTOR,
     };
   }
 
+  componentDidMount() {
+    window.addEventListener('resize', this.updateTodosHeight);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.updateTodosHeight);
+  }
+
+  updateTodosHeight = () => {
+    this.setState({
+      todosHeight: window.innerHeight * HEIGHTFACTOR,
+    });
+  };
+
   handleAddTodo = (content) => {
     this.props.dispatch(addTodo(content));
+  };
+
+  handleClear = () => {
+    this.props.dispatch(clearTodo());
   };
 
   renderTodo = () => {
@@ -50,6 +96,23 @@ class Container extends PureComponent {
     );
   };
 
+  renderAccessory = () => {
+    return (
+      <div style={styles.panel}>
+        <ul style={styles.panelInnerContainer}>
+          <li>
+            <TouchableOpacity
+              style={styles.accessory}
+              onClick={this.handleClear}
+            >
+              {'Clear all todos'}
+            </TouchableOpacity>
+          </li>
+        </ul>
+      </div>
+    );
+  };
+
   render() {
 
     const headerTitles = ['todo', 'done'];
@@ -58,6 +121,7 @@ class Container extends PureComponent {
       <div style={styles.container}>
         <Title title={'Todo List'} />
         <InputBar confirmHandler={(content) => {this.handleAddTodo(content)}} />
+        {this.renderAccessory()}
         <Header
           titles={headerTitles}
           didSelectOn={(index) => {
@@ -66,7 +130,9 @@ class Container extends PureComponent {
             });
           }}
         />
-        {this.renderTodo()}
+        <div style={{ overflowY: 'scroll', height: this.state.todosHeight }}>
+          {this.renderTodo()}
+        </div>
       </div>
     );
   }
