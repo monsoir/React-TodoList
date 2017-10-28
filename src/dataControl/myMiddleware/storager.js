@@ -17,7 +17,7 @@ const TodoSaver = store => next => action => {
     localStorage.setItem('todos', JSON.stringify(todos));
   }
 
-  return next(action);
+  next(action);
 };
 /* eslint-disable */
 
