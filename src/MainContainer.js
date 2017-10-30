@@ -9,6 +9,7 @@ import {
   clearTodo,
 } from './dataControl/actions/todoActions';
 import TouchableOpacity from './utils/UI/TouchableOpacity';
+import { Version } from './utils/config';
 
 const styles = {
   container: {
@@ -30,6 +31,7 @@ const styles = {
     height: 20,
     justifyContent: 'flex-start',
     listStyleType: 'none',
+    
   },
   accessory: {
     cursor: 'pointer',
@@ -100,6 +102,13 @@ class Container extends PureComponent {
     return (
       <div style={styles.panel}>
         <ul style={styles.panelInnerContainer}>
+          <li>
+            <div
+              style={{background: 'white', fontSize: 18, marginLeft: 2, marginRight: 20, fontFamily: 'Futura', marginTop: 2}}
+            >
+              {Version}
+            </div>
+          </li>
           <li>
             <TouchableOpacity
               style={styles.accessory}
